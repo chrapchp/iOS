@@ -11,10 +11,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 import Foundation
+import UIKit
 import CoreBluetooth
 
+enum BLEState: Int {
+    case Unknown = 0, Resetting, Unsupported, Unauthorized, PoweredOff, PoweredOn
+}
+
 protocol BLEDelegate {
-    func bleDidUpdateState()
+    func bleDidUpdateState(state: BLEState)
     func bleDidConnectToPeripheral()
     func bleDidDisconenctFromPeripheral()
     func bleDidReceiveData(data: NSData?)
@@ -27,6 +32,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     let RBL_CHAR_RX_UUID = "713D0003-503E-4C75-BA94-3148F18D941E"
     
     var delegate: BLEDelegate?
+    var state: BLEState = .Unknown
     
     private      var centralManager:   CBCentralManager!
     private      var activePeripheral: CBPeripheral?
@@ -39,7 +45,7 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         super.init()
         
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
-        self.data = NSMutableData()
+        self.data  = NSMutableData()
     }
     
     @objc private func scanTimeout() {
@@ -124,30 +130,42 @@ class BLE: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         switch central.state {
         case .Unknown:
             println("[DEBUG] Central manager state: Unknown")
+            self.state = .Unknown
+            
             break
             
         case .Resetting:
             println("[DEBUG] Central manager state: Resseting")
+            self.state = .Resetting
+            
             break
             
         case .Unsupported:
             println("[DEBUG] Central manager state: Unsopported")
+            self.state = .Unsupported
+            
             break
             
         case .Unauthorized:
             println("[DEBUG] Central manager state: Unauthorized")
+            self.state = .Unauthorized
+            
             break
             
         case .PoweredOff:
             println("[DEBUG] Central manager state: Powered off")
+            self.state = .PoweredOff
+            
             break
             
         case .PoweredOn:
             println("[DEBUG] Central manager state: Powered on")
+            self.state = .PoweredOn
+            
             break
         }
         
-        self.delegate?.bleDidUpdateState()
+        self.delegate?.bleDidUpdateState(self.state)
     }
     
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
