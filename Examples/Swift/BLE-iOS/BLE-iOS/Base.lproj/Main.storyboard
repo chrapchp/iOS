@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="BLE_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="c8o-Nq-Aj3">
+                                <rect key="frame" x="16" y="123" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5I-Wq-fG9">
+                                <rect key="frame" x="16" y="28" width="59" height="30"/>
+                                <state key="normal" title="Connect">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="connectButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="smr-XN-Qof"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfF-Nn-x5T">
+                                <rect key="frame" x="16" y="66" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mN-Rj-8d7">
+                                <rect key="frame" x="282" y="161" width="36" height="30"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Jyy-85-gZh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zfF-Nn-x5T" firstAttribute="top" secondItem="u5I-Wq-fG9" secondAttribute="bottom" constant="8" id="P6n-EG-0kC"/>
+                            <constraint firstItem="2mN-Rj-8d7" firstAttribute="top" secondItem="c8o-Nq-Aj3" secondAttribute="bottom" constant="8" id="SCG-lD-K5v"/>
+                            <constraint firstItem="c8o-Nq-Aj3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="d2r-SN-3N8"/>
+                            <constraint firstAttribute="centerX" secondItem="2mN-Rj-8d7" secondAttribute="centerX" id="dor-i0-Zz7"/>
+                            <constraint firstItem="u5I-Wq-fG9" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="f2i-Fl-r77"/>
+                            <constraint firstItem="zfF-Nn-x5T" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="j05-uH-B65"/>
+                            <constraint firstItem="c8o-Nq-Aj3" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="mHW-uY-JKQ"/>
+                            <constraint firstItem="c8o-Nq-Aj3" firstAttribute="top" secondItem="zfF-Nn-x5T" secondAttribute="bottom" constant="36" id="oVa-aB-Pvr"/>
+                            <constraint firstItem="zfF-Nn-x5T" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="se5-e5-1QA"/>
+                            <constraint firstItem="u5I-Wq-fG9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="zp0-vD-HuU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="connectButton" destination="u5I-Wq-fG9" id="2Kn-7y-DYy"/>
+                        <outlet property="messageLabel" destination="zfF-Nn-x5T" id="all-Hu-DJh"/>
+                        <outlet property="sendButton" destination="2mN-Rj-8d7" id="hZs-PJ-fOp"/>
+                        <outlet property="textField" destination="c8o-Nq-Aj3" id="dEZ-Ua-LPP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="357" y="352"/>
+        </scene>
+    </scenes>
+</document>
